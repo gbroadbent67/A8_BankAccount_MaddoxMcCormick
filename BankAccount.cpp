@@ -15,8 +15,6 @@ void BankAccount::getValues(double balance, double interestRate)
 
 void BankAccount::setInterestRate(double interestRate)
 {
-	//this->interestRate = interestRate;
-	//char interestChangeYN;
 	cout << "Enter the interest rate: " << endl;
 	cin >> interestRate;
 	
@@ -52,11 +50,10 @@ void BankAccount::calcInterest()
 {
 
 	char interestChangeYN;
-
 	getValues(balance, interestRate);
 	
 	cout << left << setw(40) << "The current interest rate is: " << setprecision(3) << fixed << interestRate << endl;
-	cout << "Do you wish to change it?" << endl;
+	cout << "Do you wish to change it? Y/N" << endl;
 	cin >> interestChangeYN;
 	if (toupper(interestChangeYN) == 'Y')
 	{
@@ -65,7 +62,8 @@ void BankAccount::calcInterest()
 
 	interest = newBalance * interestRate;
 	newBalance = newBalance + interest;
-	cout << "Interest Calculated " << setprecision(3) << fixed << interest << endl;
+	transactions++;
+	cout << "Interest Calculated " << setprecision(2) << fixed << interest << endl;
 }
 
 double BankAccount::getInterestRate()
@@ -80,13 +78,13 @@ double BankAccount::getBalance()
 	if (transactions < 1)
 	{
 		getValues(balance, interestRate);
-		cout << "The current interest rate is : " << setprecision(3) << fixed << this->interestRate << endl;
+		//cout << "The current interest rate is : " << setprecision(3) << fixed << this->interestRate << endl;
 		cout << "Your balance is: " << setprecision(2) << fixed << balance << endl;
 	}
 	else
 	{
 		this->balance = newBalance;
-		cout << "Your balance is: " << setprecision(4) << fixed << balance << endl;
+		cout << "Your balance is: " << setprecision(2) << fixed << balance << endl;
 	}
 	return balance;
 }
